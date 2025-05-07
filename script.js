@@ -403,7 +403,7 @@ const questionsTask3 = [
     const qNumber = index + questionsTask2.length + 1; // Унікальний номер
     const div = document.createElement("div");
 
-    div.className = "question task2";
+    div.className = "question task" + (index === 0 ? " active" : "");
 
     div.innerHTML = `
       <h2 style="font-size:40px; font-weight:600">How Colours Affect Emotions and Behaviors </h2>
