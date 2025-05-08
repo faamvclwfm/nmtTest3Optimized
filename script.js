@@ -489,7 +489,7 @@ const questionsTask3 = [
       <div class="space-y-3">
         ${q.options.map((opt, i) => `
           <label for="q${qNumber}a${i+1}" class="block">
-            <input type="radio" id="q${qNumber}a${i+1}" name="q${qNumber}" value="${i === q.correct ? 1 : 0}" class="hidden" onchange="markSelected(this);>
+            <input type="radio" id="q${qNumber}a${i+1}" name="q${qNumber}" value="${i === q.correct ? 1 : 0}" class="hidden" onchange="markSelected(this);">
             <div class="option-btn border border-gray-300 rounded-xl px-5 py-3 text-gray-800 bg-white cursor-pointer">${opt}</div>
           </label><br>
         `).join("")}
@@ -528,7 +528,7 @@ To boost energy or motivation, incorporate warm colours like red and yellow. Bal
       <div class="space-y-3">
         ${q.options.map((opt, i) => `
           <label for="q${qNumber}a${i+1}" class="block">
-            <input type="radio" id="q${qNumber}a${i+1}" name="q${qNumber}" value="${i === q.correct ? 1 : 0}" class="hidden" onchange="markSelected(this);>
+            <input type="radio" id="q${qNumber}a${i+1}" name="q${qNumber}" value="${i === q.correct ? 1 : 0}" class="hidden" onchange="markSelected(this);">
             <div class="option-btn border border-gray-300 rounded-xl px-5 py-3 text-gray-800 bg-white cursor-pointer">${opt}</div>
           </label><br>
         `).join("")}
@@ -555,7 +555,7 @@ To boost energy or motivation, incorporate warm colours like red and yellow. Bal
       <div class="space-y-3">
           ${q.options.map((opt, i) => `
             <label for="q${qNumber}a${i+1}" class="block">
-              <input type="radio" id="q${qNumber}a${i+1}" name="q${qNumber}" value="${i === q.correct ? 1 : 0}" class="hidden" onchange="markSelected(this);>
+              <input type="radio" id="q${qNumber}a${i+1}" name="q${qNumber}" value="${i === q.correct ? 1 : 0}" class="hidden" onchange="markSelected(this);">
               <div class="option-btn border border-gray-300 rounded-xl px-5 py-3 text-gray-800 bg-white cursor-pointer">${opt}</div>
             </label><br>
           `).join("")}
@@ -580,7 +580,7 @@ To boost energy or motivation, incorporate warm colours like red and yellow. Bal
       <div class="space-y-3">
           ${q.options.map((opt, i) => `
             <label for="q${qNumber}a${i+1}" class="block">
-              <input type="radio" id="q${qNumber}a${i+1}" name="q${qNumber}" value="${i === q.correct ? 1 : 0}" class="hidden" onchange="markSelected(this);>
+              <input type="radio" id="q${qNumber}a${i+1}" name="q${qNumber}" value="${i === q.correct ? 1 : 0}" class="hidden" onchange="markSelected(this);">
               <div class="option-btn border border-gray-300 rounded-xl px-5 py-3 text-gray-800 bg-white cursor-pointer">${opt}</div>
             </label><br>
           `).join("")}
@@ -606,7 +606,7 @@ To boost energy or motivation, incorporate warm colours like red and yellow. Bal
       <div class="space-y-3">
           ${q.options.map((opt, i) => `
             <label for="q${qNumber}a${i+1}" class="block">
-              <input type="radio" id="q${qNumber}a${i+1}" name="q${qNumber}" value="${i === q.correct ? 1 : 0}" class="hidden" onchange="markSelected(this);>
+              <input type="radio" id="q${qNumber}a${i+1}" name="q${qNumber}" value="${i === q.correct ? 1 : 0}" class="hidden" onchange="markSelected(this);">
               <div class="option-btn border border-gray-300 rounded-xl px-5 py-3 text-gray-800 bg-white cursor-pointer">${opt}</div>
             </label><br>
           `).join("")}
@@ -630,7 +630,7 @@ To boost energy or motivation, incorporate warm colours like red and yellow. Bal
       <div class="space-y-3">
           ${q.options.map((opt, i) => `
             <label for="q${qNumber}a${i+1}" class="block">
-              <input type="radio" id="q${qNumber}a${i+1}" name="q${qNumber}" value="${i === q.correct ? 1 : 0}" class="hidden" onchange="markSelected(this);>
+              <input type="radio" id="q${qNumber}a${i+1}" name="q${qNumber}" value="${i === q.correct ? 1 : 0}" class="hidden" onchange="markSelected(this);">
               <div class="option-btn border border-gray-300 rounded-xl px-5 py-3 text-gray-800 bg-white cursor-pointer">${opt}</div>
             </label><br>
           `).join("")}
@@ -672,91 +672,49 @@ let currentQuestion=0
     }
 
     function checkAnswers() {
-        let score = 0;
-        const correctanswer=document.getElementsByClassName('CorrectAnswer');
-        Array.from(correctanswer).forEach((el) => {
-            el.style.display='block';
-        })
-        const tryAgainButton = document.getElementById('again');
-        tryAgainButton.style.display = 'block';
-
-        const allQuestions = [
-            {correct:0},
-            {correct:1},
-            {correct:7},
-            {correct:5},
-            {correct:4},
-
-            {correct:2},
-            {correct:0},
-            {correct:2},
-            {correct:1},
-            {correct:3},
-        
-            {correct:1},
-            {correct:5},
-            {correct:6},
-            {correct:3},
-            {correct:0},
-            {correct:7},
-        
-            {correct:7},
-            {correct:2},
-            {correct:6},
-            {correct:0},
-            {correct:4},
-            {correct:1},
-        
-            {correct:0},
-            {correct:1},
-            {correct:3},
-            {correct:0},
-            {correct:1},
-        
-            {correct:1},
-            {correct:1},
-            {correct:0},
-            {correct:2},
-            {correct:0},
-          ]
-          const Questions = document.querySelectorAll('.question');
-        Questions.forEach((qElement, i) => {
-            const selected = qElement.querySelector('input[type="radio"]:checked');
-            const selectedIndex = selected ? Array.from(qElement.querySelectorAll('input[type="radio"]')).indexOf(selected) : -1;
-            const isCorrect = selectedIndex === allQuestions[i].correct;
+      const allQuestions = [...questions, ...questionsTask2, ...questionsTask3, ...questionsTask4, ...questionsTask5, ...questionsTask6];
+      let score = 0;
+      const tryAgainButton = document.getElementById('again');
+      tryAgainButton.style.display = 'block';
+      
+      // Fix: Use document.getElementsByClassName to get elements with class 'CorrectAnswer'
+      const correctAnswers = document.getElementsByClassName('CorrectAnswer');
+      Array.from(correctAnswers).forEach((el) => {
+        el.style.display = 'block';
+      });
+      
+      Questions.forEach((qElement, i) => {
+        const selected = qElement.querySelector('input[type="radio"]:checked');
+        const selectedIndex = selected ? Array.from(qElement.querySelectorAll('input[type="radio"]')).indexOf(selected) : -1;
+        const isCorrect = selectedIndex === allQuestions[i].correct;
     
-            // Очистити класи для option-btn
-            qElement.querySelectorAll('.option-btn').forEach(opt => {
-                opt.classList.remove('correct-answer', 'incorrect-answer', 'selected');
-            });
-    
-            // Показати правильну відповідь
-            const correctRadio = qElement.querySelectorAll('input[type="radio"]')[allQuestions[i].correct];
-            if (correctRadio && correctRadio.parentElement.querySelector('.option-btn')) {
-                correctRadio.parentElement.querySelector('.option-btn').classList.add('correct-answer');
-            }
-    
-            // Позначити неправильну, якщо є
-            if (selected && !isCorrect && selected.parentElement.querySelector('.option-btn')) {
-                selected.parentElement.querySelector('.option-btn').classList.add('incorrect-answer');
-            }
-    
-            // Оновити стилі кнопок навігації
-            buttons[i].classList.remove('correct', 'incorrect');
-            if (isCorrect) {
-                score++;
-                buttons[i].classList.add('correct');
-            } else {
-                buttons[i].classList.add('incorrect');
-            }
-    
-            // Заблокувати всі варіанти
-            qElement.querySelectorAll('input[type="radio"]').forEach(radio => {
-                radio.disabled = true;
-            });
+        qElement.querySelectorAll('label').forEach(label => {
+          label.classList.remove('correct-answer', 'incorrect-answer');
         });
     
-        document.getElementById('result').textContent = `Ваш результат: ${score} з ${allQuestions.length}`;
+        const correctRadio = qElement.querySelectorAll('input[type="radio"]')[allQuestions[i].correct];
+        if (correctRadio && correctRadio.nextElementSibling) {
+          correctRadio.nextElementSibling.classList.add('correct-answer');
+        }
+    
+        if (selected && !isCorrect && selected.nextElementSibling) {
+          selected.nextElementSibling.classList.add('incorrect-answer');
+        }
+    
+        buttons[i].classList.remove('correct-answer', 'incorrect-answer');
+        if (isCorrect) {
+          score++;
+          buttons[i].classList.add('correct-answer');
+        } else {
+          buttons[i].classList.add('incorrect-answer');
+        }
+    
+        qElement.querySelectorAll('input[type="radio"]').forEach(radio => {
+          radio.disabled = true;
+        });
+      });
+    
+      document.getElementById('result').textContent = `Ваш результат: ${score} з ${allQuestions.length}`;
     }
       
     
@@ -776,11 +734,11 @@ let currentQuestion=0
     function tryAgain() {
       buttons.length = 0;
       nav.innerHTML = '';
-      const correctanswer=document.getElementsByClassName('CorrectAnswer');
-        Array.from(correctanswer).forEach((el) => {
-            el.style.display='none';
-        })
-        
+      const correctAnswers = document.getElementsByClassName('CorrectAnswer');
+      Array.from(correctAnswers).forEach((el) => {
+        el.style.display = 'none';
+      });
+    
       Questions.forEach((q, i) => {
         const btn = document.createElement('button');
         btn.textContent = i + 1;
@@ -795,11 +753,12 @@ let currentQuestion=0
           radio.checked = false;
         });
     
-        q.querySelectorAll('label').forEach(label => {
-          label.classList.remove('correct-answer', 'incorrect-answer');
+        // Remove correct-answer, incorrect-answer, and selected classes from option-btn divs
+        q.querySelectorAll('.option-btn').forEach(option => {
+          option.classList.remove('correct-answer', 'incorrect-answer', 'selected');
         });
       });
-      
+    
       showQuestion(0);
       document.getElementById('result').textContent = '';
       document.getElementById('again').style.display = 'none';
