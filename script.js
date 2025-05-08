@@ -1,3 +1,81 @@
+const questions=[
+  {
+      image: "easterbooks.jpeg",
+      correct:0,
+      question:'Which advertisement is about ___?',
+      options: [
+          "Buying things at a discount with a promo code",
+          "Occupation opportunity for a specific gender",
+          "Exhibition about electronic devices",
+          "Volunteership at grocery shop",
+          "Volunteery work with a little lunch provided",
+          "Opportunity to drink certain beverages with discount",
+          "Being able to work with pigs on the farm",
+          "Job opportunity without knowledge of a particular language"
+        ]
+  },
+  {
+      image: "jobOccupation.jpg",
+      correct:1,
+      question:'Which advertisement is about ___?',
+      options: [
+        "Buying things at a discount with a promo code",
+        "Occupation opportunity for a specific gender",
+        "Exhibition about electronic devices",
+        "Volunteership at grocery shop",
+        "Volunteery work with a little lunch provided",
+        "Opportunity to drink certain beverages with discount",
+        "Being able to work with pigs on the farm",
+        "Job opportunity without knowledge of a particular language"
+      ]
+  },
+  {
+      image: "farmJob.png",
+      correct:7,
+      question:'Which advertisement is about ___?',
+      options: [
+        "Buying things at a discount with a promo code",
+        "Occupation opportunity for a specific gender",
+        "Exhibition about electronic devices",
+        "Volunteership at grocery shop",
+        "Volunteery work with a little lunch provided",
+        "Opportunity to drink certain beverages with discount",
+        "Being able to work with pigs on the farm",
+        "Job opportunity without knowledge of a particular language"
+      ]
+  },
+  {
+      image: "cafeeCoffee.jpeg",
+      correct:5,
+      question:'Which advertisement is about ___?',
+      options: [
+        "Buying things at a discount with a promo code",
+        "Occupation opportunity for a specific gender",
+        "Exhibition about electronic devices",
+        "Volunteership at grocery shop",
+        "Volunteery work with a little lunch provided",
+        "Opportunity to drink certain beverages with discount",
+        "Being able to work with pigs on the farm",
+        "Job opportunity without knowledge of a particular language"
+      ]
+  },
+  {
+      image: "farmVolunteering.png",
+      correct:4,
+      question:'Which advertisement is about ___?',
+      options: [
+        "Buying things at a discount with a promo code",
+        "Occupation opportunity for a specific gender",
+        "Exhibition about electronic devices",
+        "Volunteership at grocery shop",
+        "Volunteery work with a little lunch provided",
+        "Opportunity to drink certain beverages with discount",
+        "Being able to work with pigs on the farm",
+        "Job opportunity without knowledge of a particular language"
+      ]
+  }
+]
+
 const questionsTask2=[
     {
         correct:2,
@@ -399,11 +477,36 @@ const questionsTask3 = [
   ]
   const questionsContainer = document.getElementById("questions");
 
+  questions.forEach((q, index) => {
+    const qNumber = index + 1;
+    const div = document.createElement("div");
+
+    div.className = "question" + (index === 0 ? " active" : "");
+  
+    div.innerHTML = `
+      <img src="${q.image}" alt="question image" width="500px" style="margin-bottom: 20px;"><br/>
+      <p style="font-weight: bold;">${q.question}</p>
+      <div class="space-y-3">
+        ${q.options.map((opt, i) => `
+          <label for="q${qNumber}a${i+1}" class="block">
+            <input type="radio" id="q${qNumber}a${i+1}" name="q${qNumber}" value="${i === q.correct ? 1 : 0}" class="hidden" onchange="markSelected(this);>
+            <div class="option-btn border border-gray-300 rounded-xl px-5 py-3 text-gray-800 bg-white cursor-pointer">${opt}</div>
+          </label><br>
+        `).join("")}
+        <div style='display:none' class="CorrectAnswer questionCorrectAnswer">
+          <p  >Correct answer:${q.correct+1}</p>
+        </div>
+      </div>
+    `;
+  
+    questionsContainer.appendChild(div);
+  });
+
   questionsTask2.forEach((q, index) => {
     const qNumber = index + questionsTask2.length + 1; // Унікальний номер
     const div = document.createElement("div");
 
-    div.className = "question task" + (index === 0 ? " active" : "");
+    div.className = "question";
 
     div.innerHTML = `
       <h2 style="font-size:40px; font-weight:600">How Colours Affect Emotions and Behaviors </h2>
@@ -578,6 +681,12 @@ let currentQuestion=0
         tryAgainButton.style.display = 'block';
 
         const allQuestions = [
+            {correct:0},
+            {correct:1},
+            {correct:7},
+            {correct:5},
+            {correct:4},
+
             {correct:2},
             {correct:0},
             {correct:2},
