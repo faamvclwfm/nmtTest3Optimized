@@ -429,7 +429,9 @@ To boost energy or motivation, incorporate warm colours like red and yellow. Bal
             <div class="option-btn border border-gray-300 rounded-xl px-5 py-3 text-gray-800 bg-white cursor-pointer">${opt}</div>
           </label><br>
         `).join("")}
-        <p style='display:none' id="CorrectAnswer">Correct answer:${q.correct+1}</p>
+        <div style='display:none' class="CorrectAnswer questionCorrectAnswer">
+          <p  >Correct answer:${q.correct+1}</p>
+        </div>
       </div>
     `
 
@@ -454,7 +456,9 @@ To boost energy or motivation, incorporate warm colours like red and yellow. Bal
               <div class="option-btn border border-gray-300 rounded-xl px-5 py-3 text-gray-800 bg-white cursor-pointer">${opt}</div>
             </label><br>
           `).join("")}
-          <p style='display:none' id="CorrectAnswer">Correct answer:${q.correct+1}</p>
+          <div style='display:none' class="CorrectAnswer questionCorrectAnswer">
+          <p  >Correct answer:${q.correct+1}</p>
+        </div>
         </div>
       `
       questionsContainer.appendChild(div);
@@ -477,7 +481,9 @@ To boost energy or motivation, incorporate warm colours like red and yellow. Bal
               <div class="option-btn border border-gray-300 rounded-xl px-5 py-3 text-gray-800 bg-white cursor-pointer">${opt}</div>
             </label><br>
           `).join("")}
-          <p style='display:none' id="CorrectAnswer">Correct answer:${q.correct+1}</p>
+          <div style='display:none' class="CorrectAnswer questionCorrectAnswer">
+          <p  >Correct answer:${q.correct+1}</p>
+        </div>
         </div>
       `
       questionsContainer.appendChild(div);
@@ -501,7 +507,9 @@ To boost energy or motivation, incorporate warm colours like red and yellow. Bal
               <div class="option-btn border border-gray-300 rounded-xl px-5 py-3 text-gray-800 bg-white cursor-pointer">${opt}</div>
             </label><br>
           `).join("")}
-          <p style='display:none' id="CorrectAnswer">Correct answer:${q.correct+1}</p>
+          <div style='display:none' class="CorrectAnswer questionCorrectAnswer">
+          <p  >Correct answer:${q.correct+1}</p>
+        </div>
         </div>
       `
       questionsContainer.appendChild(div);
@@ -523,7 +531,9 @@ To boost energy or motivation, incorporate warm colours like red and yellow. Bal
               <div class="option-btn border border-gray-300 rounded-xl px-5 py-3 text-gray-800 bg-white cursor-pointer">${opt}</div>
             </label><br>
           `).join("")}
-          <p style='display:none' id="CorrectAnswer">Correct answer:${q.correct+1}</p>
+          <div style='display:none' class="CorrectAnswer questionCorrectAnswer">
+          <p  >Correct answer:${q.correct+1}</p>
+        </div>
         </div>
       `
       questionsContainer.appendChild(div);
@@ -560,8 +570,10 @@ let currentQuestion=0
 
     function checkAnswers() {
         let score = 0;
-        const correctanswer=document.getElementById('CorrectAnswer');
-        correctanswer.style.display='block';
+        const correctanswer=document.getElementsByClassName('CorrectAnswer');
+        Array.from(correctanswer).forEach((el) => {
+            el.style.display='block';
+        })
         const tryAgainButton = document.getElementById('again');
         tryAgainButton.style.display = 'block';
 
@@ -655,8 +667,11 @@ let currentQuestion=0
     function tryAgain() {
       buttons.length = 0;
       nav.innerHTML = '';
-      correcAnsewer=document.getElementById('CorrectAnswer');
-        correcAnsewer.style.display='none';
+      const correctanswer=document.getElementsByClassName('CorrectAnswer');
+        Array.from(correctanswer).forEach((el) => {
+            el.style.display='none';
+        })
+        
       Questions.forEach((q, i) => {
         const btn = document.createElement('button');
         btn.textContent = i + 1;
