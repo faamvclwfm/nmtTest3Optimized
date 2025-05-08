@@ -198,6 +198,23 @@ body {
     border-radius: 15px;
     width: 400px;
   }
+  .option-btn {
+    transition: all 0.3s ease;
+  }
+  .option-btn:hover {
+    transform: scale(1.05);
+  }
+  .correct-answer {
+    background-color: #c6f6d5 !important;
+    border-color: #38a169 !important;
+  }
+  .incorrect-answer {
+    background-color: #fed7d7 !important;
+    border-color: #e53e3e !important;
+  }
+  .selected {
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.5);
+  }
 
   .questionCorrectAnswer{
     background: rgb(172, 232, 186);
